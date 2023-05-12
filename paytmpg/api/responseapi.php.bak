@@ -1,0 +1,28 @@
+<?php
+$productCollection = Mage::getModel('customerproducts/customerproducts')->getCollection();
+$productCollection->load();
+//print_r($productCollection);
+?>
+<section id="our-service" style="background-color: #FFF">
+		<div class="container text-center">
+			<h3 class="section-heading text-center">Our Products &amp; Services</h3>
+			<p class="section-p text-center">On-demand Fuel Delivery Services and Fuel Storage Solutions.</p>
+			<div class="row">
+				<?php
+					foreach($productCollection as $collection){
+				?>
+				<div class="col-md-3 text-md-left" style="margin-bottom: 9%;">
+					<a href="<?php echo Mage::getBaseUrl().'customerproducts/index/view/product_id/'.$collection->getProductId();?>">
+						<div class="service-overlay">
+							<img src="<?php echo Mage::getBaseUrl('media').'tps/products/'. DS .$collection->getProductImage();;?>">
+							<h5 class="service-h5"><?php echo $collection->getProductName();?></h5>
+							<p class="service-p"><?php echo substr($collection->getProductDescription(), 0, 100);?></p>
+						</div>
+					</a>
+				</div>
+				<?php
+					}
+				?>				
+			</div>
+		</div>
+	</section>
